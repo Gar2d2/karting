@@ -1,5 +1,5 @@
 <?php
-include "DBConnection.php";
+include_once "DBConnection.php";
 function loguj($login, $haslo)
 {
     $query="SELECT * FROM `osoba` WHERE pseudonim='$login'";

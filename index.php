@@ -18,8 +18,8 @@
                    <div id="uprawnienia" style="width: 30%; height:50%; float: left; text-align: center">
                    Uprawienia:
                    <?php
-                   include "loginForm/DBConnection.php";
-                     include('loginForm/login.php');
+                   include_once "loginForm/DBConnection.php";
+                     include_once('loginForm/login.php');
                      if(isset($_SESSION['role']))
                      {                           
                      getRole();
@@ -85,19 +85,19 @@
               switch($_GET['s'])
                 {
                  case "raporty":
-                      include "raporty.php";
+                      include_once "raporty.php";
                       raport();
                       break;
                  case "przejazdy":
-                      include "przejazdy.php";
+                      include_once "przejazdy.php";
                       przejazd();
                       break;
                  case "systemUsers":
-                      include "systemUsers.php";
+                      include_once "systemUsers.php";
                       systemUsers();
                       break;
                  case "warsztat":
-                      include "warsztat.php";
+                      include_once "warsztat.php";
                       warsztat();
                       break;
                 }

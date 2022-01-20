@@ -69,7 +69,7 @@
      if(isset($_POST["loguj"]))
      {
 
-       include "autoryzacja.php";
+       include_once "autoryzacja.php";
        if(!isset($_SESSION['role']) || $_SESSION['role'] == "Niezalogowano")
        {
        
@@ -80,7 +80,7 @@
      if(isset($_POST["rejestruj"]))
      {
 
-       include "autoryzacja.php";
+       include_once "autoryzacja.php";
        rejestruj($_POST["firstName"], $_POST["surname"], $_POST["loginRegister"], $_POST["passwordRegister"], "UZYTKOWNIK");
      }
 
