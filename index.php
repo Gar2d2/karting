@@ -18,13 +18,13 @@
                    <div id="uprawnienia" style="width: 30%; height:50%; float: left; text-align: center">
                    Uprawienia:
                    <?php
-                   include_once "loginForm/DBConnection.php";
-                     include_once('loginForm/login.php');
-                     if(isset($_SESSION['role']))
-                     {                           
-                     getRole();
-                     }
-                   ?>
+include_once "loginForm/DBConnection.php";
+include_once ('loginForm/login.php');
+if (isset($_SESSION['role']))
+{
+    getRole();
+}
+?>
                    </div>  
                     
 	        </header>
@@ -63,7 +63,7 @@
                   </tr>
                   <tr>
                     <td>
-                    <a href="index.php?s=systemUsers">  
+                    <a href="index.php?s=rezerwacja">  
                     <input type="submit" value="Użytkownicy Systemu" style="width: 100%; height: 64px; background-color: lightblue">  
                     </a>
                     </td>
@@ -80,32 +80,49 @@
          </div>
          <div id="main">
               <?php
-              if(isset($_GET['s']))
-              {
-              switch($_GET['s'])
-                {
-                 case "raporty":
-                      include_once "raporty.php";
-                      raport();
-                      break;
-                 case "przejazdy":
-                      include_once "przejazdy.php";
-                      przejazd();
-                      break;
-                 case "systemUsers":
-                      include_once "systemUsers.php";
-                      systemUsers();
-                      break;
-                 case "warsztat":
-                      include_once "warsztat.php";
-                      warsztat();
-                      break;
-                }
-              } else
-              {
-                if(!isset($_SESSION['role']))
-                {
-                print('
+if (isset($_GET['s']))
+{
+    switch ($_GET['s'])
+    {
+        case "raporty":
+            include_once "raporty.php";
+            raport();
+        break;
+        case "przejazdy":
+            include_once "przejazdy.php";
+            przejazd();
+        break;
+        case "systemUsers":
+            include_once "systemUsers.php";
+            systemUsers();
+        break;
+        case "warsztat":
+            include_once "warsztat.php";
+            warsztat();
+        break;
+        case "rezerwacja":
+            include_once "przejazdy/rezerwacja.php";
+        break;
+    }
+}
+else
+{
+    if (isset($_GET['data']))
+    {
+        include_once "przejazdy/rezerwacjaGodzina.php";
+        rezerwuj($_GET['data']);
+    }
+    else
+    {
+        if (isset($_GET['startH']))
+        {
+            echo "zapisz do bazy";
+        }
+        else
+        {
+            if (!isset($_SESSION['role']))
+            {
+                print ('
                 <form action="" method="post">
                   <table border="0">
                     <tbody>
@@ -119,23 +136,28 @@
                   </table>
                 </form>
                 ');
-                if(isset($_POST['log']))
+                if (isset($_POST['log']))
                 {
-                print(loginForm());
+                    print (loginForm());
                 }
-                if(isset($_POST['new']))
+                if (isset($_POST['new']))
                 {
-                print(registerForm());
+                    print (registerForm());
                 }
-                } else
-                {
-                print(logoutForm());
-                }
-                
-              }
-              ?>
+            }
+            else
+            {
+                print (logoutForm());
+            }
+        }
+
+    }
+
+}
+?>
               </form>
          </div> 
     </div>
   </body>
 </html>
+
