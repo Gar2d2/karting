@@ -19,7 +19,7 @@
                    Uprawienia:
                    <?php
                    include_once "loginForm/DBConnection.php";
-                     include_once('loginForm/login.php');
+                   include_once('loginForm/login.php');
                      if(isset($_SESSION['role']))
                      {                           
                      getRole();
@@ -80,6 +80,10 @@
          </div>
          <div id="main">
               <?php
+              include_once "backend\PrzejazdDAO.php";
+              // $PrzejazdDAO = new PrzejazdDAO();
+              // $przejazdy = $PrzejazdDAO->pobierzPrzejazdyZData("2022-01-21", $_SESSION['link']);
+              // print($przejazdy[0]->id);
               if(isset($_GET['s']))
               {
               switch($_GET['s'])
