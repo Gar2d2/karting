@@ -1,7 +1,7 @@
 @charset "UTF-8";
 body 
 {
-	background-color: lightblue;
+	background-color: #FFFDA0;
 	margin: 0px;
 	font-family: "Comic Sans MS", normal;
 }
@@ -14,7 +14,8 @@ body
 
 #menu
 {
-	height: 1005px;
+	min-height: 1005px;
+  height: 100%;
 	width: 10%;
 	background-color: #FFFDA0;
 	float: left;
@@ -29,7 +30,8 @@ header
 
 #main 
 {
-	height: 930px;
+	min-height: 930px;
+  height: 100%;
 	width: 90%;
 	background-color: #FFFDD1;
 	float: right;
@@ -105,6 +107,26 @@ header
 }
 
 .main tr
+{
+  width: 100%;
+  height: 100px;
+}
+
+.rezerwacje td
+{
+	border-color:black;
+	border-style:solid;
+	border-width:0px;
+	font-size:14px;
+	overflow:hidden;
+	padding:10px 5px;
+	word-break:normal;
+	text-align: center;
+	color: black;
+  width: 14%;
+}
+
+.rezerwacje tr
 {
   width: 100%;
   height: 100px;
