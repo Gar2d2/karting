@@ -15,7 +15,7 @@
             {
                 while($row = mysqli_fetch_array($result))
                 {
-                    print($row['id']);
+                    #print($row['id']);
                     $przejazdy[$index] = new PrzejazdDTO();
                     $przejazdy[$index]->id = $row['id'];
                     $przejazdy[$index]->data = $row['dataPrzejazdu'];

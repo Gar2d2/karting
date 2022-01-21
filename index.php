@@ -130,7 +130,17 @@ else
     {
         if (isset($_GET['startH']))
         {
-            echo "zapisz do bazy";
+			include_once "backend\przejazdDTO.php";
+			include_once "backend\przejazdDAO.php";
+			$przejazdDTO = new PrzejazdDTO();
+			$przejazdDTO->id = NULL;
+			$przejazdDTO->data = $_GET['dat'];
+			$przejazdDTO->godzinaRozpoczecia = $_GET['startH'];
+			$przejazdDTO->godzinaZakonczenia = $_GET['endH'];
+			$przejazdDAO = new PrzejazdDAO();
+			$przejazdDAO->dodajPrzejazd($przejazdDTO);
+            echo $przejazdDTO->data;
+
         }
         else
         {
