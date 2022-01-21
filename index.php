@@ -80,6 +80,17 @@ if (isset($_SESSION['role']))
          </div>
          <div id="main">
               <?php
+
+              include_once 'backend\OsobaDAO.php';
+              $osobaDAO = new OsobaDAO();
+              $osobaDTO = $osobaDAO->pobierzOsobePoID(1);
+              print($osobaDTO->id);
+              print($osobaDTO->pseudonim);
+              print($osobaDTO->haslo);
+              print($osobaDTO->imie);
+              print($osobaDTO->nazwisko);
+              print($osobaDTO->uprawnienia);
+
 if (isset($_GET['s']))
 {
     switch ($_GET['s'])
