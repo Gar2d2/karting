@@ -1,5 +1,6 @@
 <?php
 include_once("backend/PrzejazdDAO.php");
+include_once("backend/RezerwacjaDAO.php");
      function rezerwuj($dzien)
      {        
        print('<form action="" method="get"><table border="1">
@@ -31,7 +32,8 @@ while ($startdate < $enddate && $now < $enddate) {
    {
 	if($startdate == strtotime($przejazd->godzinaRozpoczecia, $d))
 	{
-	$ileRezerwacji++;
+	$rezerwacjeDAO = new RezerwacjaDAO();
+	$ileRezerwacji = count($rezerwacjeDAO->pobierzRezerwacjeDlaPrzejazdu($przejazd->id));
 	}
    }
    if($ileRezerwacji < 2)

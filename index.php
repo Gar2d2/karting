@@ -121,6 +121,8 @@ else
         {
 			include_once "backend\przejazdDTO.php";
 			include_once "backend\przejazdDAO.php";
+			include_once "backend\RezerwacjaDAO.php";
+			include_once "backend\RezerwacjaDTO.php";
 			$przejazdDTO = new PrzejazdDTO();
 			$przejazdDTO->id = NULL;
 			$przejazdDTO->data = $_GET['dat'];
@@ -129,6 +131,13 @@ else
 			$przejazdDAO = new PrzejazdDAO();
 			$przejazdDAO->dodajPrzejazd($przejazdDTO);
             echo $przejazdDTO->data;
+			$rezerwacjaDTO = new rezerwacjaDTO();
+			$rezerwacjaDTO->id = NULL; 
+			$rezerwacjaDTO->idOsoby = 2; #do zdobycia w pliku którego nie zaciągłem, do poprawy
+			$rezerwacjaDTO->idPrzejazdu = 5; #jakoś trzeba getować id przejazdu wstawionego przed chwilą
+			$rezerwacjaDTO->potwierdzono = 0; #0 - nie, 1 - tak;
+			$rezerwacjaDAO = new rezerwacjaDAO();
+			$rezerwacjaDAO->dodajRezerwacje($rezerwacjaDTO);
 
         }
         else
