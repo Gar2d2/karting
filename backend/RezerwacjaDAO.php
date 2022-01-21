@@ -1,20 +1,16 @@
 <?php
     include_once 'backend\RezerwacjaDTO.php';
+    include_once 'backend\DBConnector.php';
     class RezerwacjaDAO
     {
         
         public function pobierzRezerwacjeDlaPrzejazdu($przejazdId)
         {
-            $dbhost = 'localhost';
-            $dbuser = 'root';
-            $dbpass = '';
-            $baza = 'tor_kartingowy';
-            
-            $link = mysqli_connect($dbhost, $dbuser, $dbpass, $baza);
+            $connection = new DBConnector();
             $rezerwacje[] = new RezerwacjaDTO();
             $index = 0;
             $query="SELECT * FROM `rezerwacja` WHERE idPrzejazdu='$przejazdId'";
-            $result = mysqli_query($link, $query);
+            $result = mysqli_query($connection->GetBazaConnection(), $query);
             if($result)
             {
                 while($row = mysqli_fetch_array($result))
@@ -28,6 +24,14 @@
                 }
             }
             return $rezerwacje;
+        }
+
+        public function dodajRezerwacje($rezerwacjaDTO)//tutaj DTO przejazd
+        {
+            $connection = new DBConnector();
+            $query="INSERT INTO `rezerwacja` (`id`, `idOsoby`, `idPrzejazdu`, `potwierdzono`) VALUES (NULL, '$rezerwacjaDTO->idOsoby', '$rezerwacjaDTO->idPrzejazdu', '$rezerwacjaDTO->potwierdzono');";
+            $result = mysqli_query($connection->GetBazaConnection(), $query);
+            return $result;
         }
     }
 ?>
