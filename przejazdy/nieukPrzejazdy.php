@@ -1,5 +1,6 @@
 <?php
   print('
+
 <script>
 function allowDrop(ev) {
   ev.preventDefault();
@@ -15,8 +16,12 @@ function drop(ev) {
   ev.target.appendChild(document.getElementById(data));
   document.getElementById(ev.target.id).setAttribute("value",data);
 }
+
+
+
 </script>
 
+<div id="przypis" style="width: 50%; height: 100%; float: left">
 
 <form action="" method="get">
   
@@ -36,16 +41,14 @@ function drop(ev) {
 for($i = 1;  $i<10; $i++)#tu będzie trzeba dać ilość kartów
 {
  print('<tr>
-        <td><input readonly type="text" name="kart" value='."$i".' style="width: 100%; height: 100px"  draggable="true" ondragstart="drag(event)" id='."$i".'></td>
-        <td>Uczestnik '."$i".'</td>
-        <td><input readonly name="uczestnik'."$i".'" type="text" value="" style="width: 100%; height: 100px" id="div'."$i".'" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td><input readonly type="text" name="kart" value='."$i".' style="width: 100px; height: 100px"  draggable="true" ondragstart="drag(event)" id='."$i".'></td>
+        <td style="width: 200px">Uczestnik '."$i".'</td>
+        <td><input readonly name="uczestnik'."$i".'" type="text" value="" style="width: 100px; height: 100px" id="div'."$i".'" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
       </tr>');
 } 
 
 
     
-      
-
 
 print('
        <tr>
@@ -53,10 +56,14 @@ print('
       </tr>
     </tbody>
   </table>
-</form>');
-      
+</form>
+</div>
+<div id="czas" style="width: 50%; height: 100px; float: right">
+</div>');
 
-
+print('
+<div id="rest" style="width: 50%; height: 100%; float: right">
+</div>');
 
  
 ?>
