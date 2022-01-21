@@ -103,6 +103,9 @@ if (isset($_GET['s']))
         case "rezerwacja":
             include_once "przejazdy/rezerwacja.php";
         break;
+        case "nieukPrzejazdy":
+            include_once "przejazdy/nieukPrzejazdy.php";
+        break;
     }
 }
 else
@@ -153,6 +156,10 @@ else
 
     }
 
+}
+if(isset($_GET['uczestnik1']))
+{
+ echo 'tu zrobić zapisywanie do bazy';
 }
 ?>
               </form>

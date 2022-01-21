@@ -8,7 +8,11 @@
                     <a href="index.php?s=rezerwacja">  
                     <input type="submit" value="Przejdź do rezerwacji" style="width: 100%; height: 100px">  
                     </a>
-                    </td><td>
+                    </td>
+                    <td>
+                    <a href="index.php?s=nieukPrzejazdy">  
+                    <input type="submit" value="Przejdź do nieukończone przejazdy" style="width: 100%; height: 100px">  
+                    </a>
                     </td><td>
                     </td><td>
                     </td>
