@@ -63,7 +63,7 @@ if (isset($_SESSION['role']))
                   </tr>
                   <tr>
                     <td>
-                    <a href="index.php?s=rezerwacja">  
+                    <a href="index.php?s=sysetmUsers">  
                     <input type="submit" value="Użytkownicy Systemu" style="width: 100%; height: 64px; background-color: lightblue">  
                     </a>
                     </td>
