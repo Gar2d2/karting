@@ -1,5 +1,5 @@
 <?php
-    include_once 'backend\PrzejazdDTO.php';
+    include_once 'PrzejazdDTO.php';
     class PrzejazdDAO
     {
         
@@ -20,7 +20,7 @@
             {
                 while($row = mysqli_fetch_array($result))
                 {
-                    print($row['id']);
+                    #print($row['id']);
                     $przejazdy[$index] = new PrzejazdDTO();
                     $przejazdy[$index]->id = $row['id'];
                     $przejazdy[$index]->data = $row['dataPrzejazdu'];
