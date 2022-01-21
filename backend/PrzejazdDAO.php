@@ -3,7 +3,7 @@
     class PrzejazdDAO
     {
         
-        public function pobierzPrzejazdyZData($dataPrzejazdow, $link)
+        public function pobierzPrzejazdyZData($dataPrzejazdow)
         {
             $dbhost = 'localhost';
             $dbuser = 'root';
@@ -11,22 +11,24 @@
             $baza = 'tor_kartingowy';
             
             $link = mysqli_connect($dbhost, $dbuser, $dbpass, $baza);
-            //'2022-01-21'
+
             $przejazdy[] = new PrzejazdDTO();
             $index = 0;
-                //WHERE dataPrzejazdu='$dataPrzejazdow'
-            $query="SELECT * FROM `przejazd`";
+            $query="SELECT * FROM `przejazd` WHERE dataPrzejazdu='$dataPrzejazdow'";
             $result = mysqli_query($link, $query);
-            while($row = mysqli_fetch_array($result))
+            if($result)
             {
-                print($row['id']);
-                $przejazdy[$index] = new PrzejazdDTO();
-                $przejazdy[$index]->id = $row['id'];
-                $przejazdy[$index]->data = $row['dataPrzejazdu'];
-                $przejazdy[$index]->godzinaRozpoczecia = $row['godzinaRozpoczecia'];
-                $przejazdy[$index]->godzinaZakonczenia = $row['godzinaZakonczenia'];
+                while($row = mysqli_fetch_array($result))
+                {
+                    print($row['id']);
+                    $przejazdy[$index] = new PrzejazdDTO();
+                    $przejazdy[$index]->id = $row['id'];
+                    $przejazdy[$index]->data = $row['dataPrzejazdu'];
+                    $przejazdy[$index]->godzinaRozpoczecia = $row['godzinaRozpoczecia'];
+                    $przejazdy[$index]->godzinaZakonczenia = $row['godzinaZakonczenia'];
+                    $index++;
+                }
             }
-            print($przejazdy[0]->id);
             return $przejazdy;
         }
     }

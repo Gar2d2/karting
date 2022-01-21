@@ -80,10 +80,6 @@
          </div>
          <div id="main">
               <?php
-              include_once "backend\PrzejazdDAO.php";
-              // $PrzejazdDAO = new PrzejazdDAO();
-              // $przejazdy = $PrzejazdDAO->pobierzPrzejazdyZData("2022-01-21", $_SESSION['link']);
-              // print($przejazdy[0]->id);
               if(isset($_GET['s']))
               {
               switch($_GET['s'])
