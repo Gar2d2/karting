@@ -134,7 +134,6 @@
             $connection = new DBConnector();
             $query="UPDATE `przejazd` SET `dataPrzejazdu` = '$przejazdDTO->data', `godzinaRozpoczecia` = '$przejazdDTO->godzinaRozpoczecia', `godzinaZakonczenia` = '$przejazdDTO->godzinaZakonczenia' WHERE `przejazd`.`id` = $przejazdDTO->id;";
             $result = mysqli_query($connection->GetBazaConnection(), $query);
-            print($result);
             return $result;
         }
     }

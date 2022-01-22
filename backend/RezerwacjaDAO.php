@@ -25,6 +25,10 @@
                     $index++;
                 }
             }
+            if($index == 0)
+            {
+                return null;
+            }
             return $rezerwacje;
         }
 
