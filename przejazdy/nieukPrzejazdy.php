@@ -1,4 +1,6 @@
 <?php
+    include_once 'backend\PrzejazdDTO.php';
+    include_once 'backend\PrzejazdDAO.php';
   print('
 
 <script>
@@ -19,9 +21,15 @@ function drop(ev) {
 
 
 
-</script>
-
-<div id="przypis" style="width: 50%; height: 100%; float: left">
+</script>');
+$przejazdDAO = new PrzejazdDAO();
+$now = strtotime("now");
+$day = date('Y-m-d', $now);
+$time = date('H:i', $now);
+$przejazd = $przejazdDAO -> pobierzObecnyPrzejazd($time, $day);
+if(!is_null($przejazd))
+{
+print('<div id="przypis" style="width: 50%; height: 100%; float: left">
 
 <form action="" method="get">
   
@@ -59,11 +67,16 @@ print('
 </form>
 </div>
 <div id="czas" style="width: 50%; height: 100px; float: right">
-</div>');
+');
 
 print('
-<div id="rest" style="width: 50%; height: 100%; float: right">
+</div><div id="rest" style="width: 50%; height: 100%; float: right">
 </div>');
+
+}
+
+
+
 
  
 ?>

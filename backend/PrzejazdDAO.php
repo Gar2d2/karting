@@ -48,6 +48,35 @@
             return $przejazd;
         }
 
+        public function pobierzObecnyPrzejazd($time, $day)
+        {
+            $connection = new DBConnector();
+            $przejazdy[] = new PrzejazdDTO();
+            $query="SELECT * FROM `przejazd` WHERE dataPrzejazdu = '$day' and godzinaRozpoczecia < '$time' and godzinaZakonczenia> '$time'";
+            $result = mysqli_query($connection->GetBazaConnection(), $query);
+            $help = 0;
+            if($result)
+            {
+                while($row = mysqli_fetch_array($result))
+                {
+                    #print($row['id']);
+                    $przejazd = new PrzejazdDTO();
+                    $przejazd->id = $row['id'];
+                    $przejazd->data = $row['dataPrzejazdu'];
+                    $przejazd->godzinaRozpoczecia = $row['godzinaRozpoczecia'];
+                    $przejazd->godzinaZakonczenia = $row['godzinaZakonczenia'];
+                    $help++;
+                }
+                if($help == 0)
+                {
+                 
+                    $przejazd = new PrzejazdDTO();
+                }
+            } 
+            return $przejazd;
+        }
+
+
          public function pobierzPrzejazdZDataIGodzina($dataPrzejazdow, $godzinaPrzejazdow)
         {
             $connection = new DBConnector();
