@@ -26,6 +26,39 @@
             }
             return $przejazdy;
         }
+
+         public function pobierzPrzejazdZDataIGodzina($dataPrzejazdow, $godzinaPrzejazdow)
+        {
+            $connection = new DBConnector();
+            $przejazdy[] = new PrzejazdDTO();
+            $index = 0;
+            $query="SELECT * FROM `przejazd` WHERE dataPrzejazdu='$dataPrzejazdow'";
+            $result = mysqli_query($connection->GetBazaConnection(), $query);
+            if($result)
+            {
+                while($row = mysqli_fetch_array($result))
+                {
+                    $przejazdy[$index] = new PrzejazdDTO();
+                    $przejazdy[$index]->id = $row['id'];
+                    $przejazdy[$index]->data = $row['dataPrzejazdu'];
+                    $przejazdy[$index]->godzinaRozpoczecia = $row['godzinaRozpoczecia'];
+                    $przejazdy[$index]->godzinaZakonczenia = $row['godzinaZakonczenia'];
+                    $index++;
+                }
+            }
+            if($przejazdy)
+            {
+                for($i =0; $i<count($przejazdy);$i++)
+                {
+                    if($przejazdy[$i]->godzinaRozpoczecia == $godzinaPrzejazdow)
+                    {
+                        return $przejazdy[$i];
+                    }
+                }
+            }
+            return 0;
+        }
+
         public function dodajPrzejazd($przejazdDTO)//tutaj DTO przejazd
         {
             $przejazdy = $this->pobierzPrzejazdyZData($przejazdDTO->data);
