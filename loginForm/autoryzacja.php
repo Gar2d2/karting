@@ -1,9 +1,10 @@
 <?php
-include_once "DBConnection.php";
+include_once 'backend\DBConnector.php';
 function loguj($login, $haslo)
 {
+    $connection = new DBConnector();
     $query="SELECT * FROM `osoba` WHERE pseudonim='$login'";
-    $result = mysqli_query($_SESSION['link'], $query);
+    $result = mysqli_query($connection->GetBazaConnection(), $query);
     if($row = mysqli_fetch_array($result, MYSQLI_BOTH))
     {
         if($row['haslo'] == $haslo)
@@ -15,8 +16,9 @@ function loguj($login, $haslo)
 }
 function rejestruj($imie, $nazwisko, $pseudonim, $haslo, $uprawnienia)
 {
+    $connection = new DBConnector();
     $query="SELECT * FROM `osoba` WHERE pseudonim='$pseudonim'";
-    $result = mysqli_query($_SESSION['link'], $query);
+    $result = mysqli_query($connection->GetBazaConnection(), $query);
     //sprawdzenie czy nie ma juz kogos w bazie z takim pseudonimem 
     if(!$row = mysqli_fetch_array($result, MYSQLI_BOTH))
     {
