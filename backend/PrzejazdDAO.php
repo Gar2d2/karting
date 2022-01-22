@@ -26,6 +26,27 @@
             }
             return $przejazdy;
         }
+		
+		public function pobierzPrzejazdZID($id)
+        {
+            $connection = new DBConnector();
+            $przejazdy[] = new PrzejazdDTO();
+            $query="SELECT * FROM `przejazd` WHERE id='$id' LIMIT 1";
+            $result = mysqli_query($connection->GetBazaConnection(), $query);
+            if($result)
+            {
+                while($row = mysqli_fetch_array($result))
+                {
+                    #print($row['id']);
+                    $przejazd = new PrzejazdDTO();
+                    $przejazd->id = $row['id'];
+                    $przejazd->data = $row['dataPrzejazdu'];
+                    $przejazd->godzinaRozpoczecia = $row['godzinaRozpoczecia'];
+                    $przejazd->godzinaZakonczenia = $row['godzinaZakonczenia'];
+                }
+            }
+            return $przejazd;
+        }
 
          public function pobierzPrzejazdZDataIGodzina($dataPrzejazdow, $godzinaPrzejazdow)
         {
