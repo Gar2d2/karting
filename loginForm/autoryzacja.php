@@ -23,7 +23,7 @@ function rejestruj($imie, $nazwisko, $pseudonim, $haslo, $uprawnienia)
     if(!$row = mysqli_fetch_array($result, MYSQLI_BOTH))
     {
         $query="INSERT INTO `osoba` (`id`, `pseudonim`, `haslo`, `imie`, `nazwisko`, `uprawnienia`) VALUES (NULL, '$pseudonim', '$haslo', '$imie', '$nazwisko', '$uprawnienia')";
-        $result = mysqli_query($_SESSION['link'], $query);
+        $result = mysqli_query($connection->GetBazaConnection(), $query);
         return 1;
     }  
     return 0;
