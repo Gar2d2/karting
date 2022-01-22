@@ -3,6 +3,30 @@
     include_once 'backend\DBConnector.php';
     class PrzejazdDAO
     {
+    
+     public function pobierzPrzejazdy()
+        {
+            $connection = new DBConnector();
+            $przejazdy[] = new PrzejazdDTO();
+            $index = 0;
+            $query="SELECT * FROM `przejazd`";
+            $result = mysqli_query($connection->GetBazaConnection(), $query);
+            if($result)
+            {
+                while($row = mysqli_fetch_array($result))
+                {
+                    #print($row['id']);
+                    $przejazdy[$index] = new PrzejazdDTO();
+                    $przejazdy[$index]->id = $row['id'];
+                    $przejazdy[$index]->data = $row['dataPrzejazdu'];
+                    $przejazdy[$index]->godzinaRozpoczecia = $row['godzinaRozpoczecia'];
+                    $przejazdy[$index]->godzinaZakonczenia = $row['godzinaZakonczenia'];
+                    $index++;
+                }
+            }
+            return $przejazdy;
+        }
+
         
         public function pobierzPrzejazdyZData($dataPrzejazdow)
         {

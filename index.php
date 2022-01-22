@@ -135,6 +135,9 @@ if (isset($_GET['s']))
 		case "acceptRezerwacja":
 			include_once "przejazdy/acceptRezerwacja.php";
 		break;
+		case "zakonczonePrzejazdy":
+			include_once "przejazdy/zakonczonePrzejazdy.php";
+		break;
     }
 }
 else
@@ -189,7 +192,16 @@ else
 				
 			} else
 			{
-				if (!isset($_SESSION['role']))
+       if(isset($_GET['detail']))
+       {
+        
+				include_once "backend\ZakonczoneDAO.php";
+				include_once "backend\ZakonczoneDTO.php";
+        $zakonczoneDAO = new zakonczoneDAO();
+        $zakonczoneDAO->pokazSzczegoly($_GET['detail']);
+       } else
+       {
+       	if (!isset($_SESSION['role']))
             {
                 print ('
                 <form action="" method="post">
@@ -218,6 +230,8 @@ else
             {
                 print (logoutForm());
             }
+       }
+			
 			}
         }
 
