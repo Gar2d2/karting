@@ -1,3 +1,4 @@
+
 <?php
     include_once 'backend\PrzejazdDTO.php';
     include_once 'backend\PrzejazdDAO.php';
@@ -64,7 +65,7 @@ print('<div id="przypis" style="width: 50%; height: 100%; float: left">
 //WZIĄC ID PIERWSZEGO LEPSZEGO BEZ DATY ZAKOŃCZENIA - zrobione
 //POBRAĆ REZERWACJE Z TEGO PRZEJAZDU
 $RezerwacjaDAO = new RezerwacjaDAO();
-$RezerwacjeDlaPrzejazdu = $RezerwacjaDAO->pobierzRezerwacjeDlaPrzejazdu($przejazd->id);
+$RezerwacjeDlaPrzejazdu = $RezerwacjaDAO->pobierzPotwierdzoneRezerwacjeDlaPrzejazdu($przejazd->id);
 //TUTEJ
 $GokartDAO = new GokartDAO();
 $Gokarty = $GokartDAO->pobierzGokarty();
@@ -99,7 +100,7 @@ for($i = 0;  $i<count($Gokarty); $i++)#tu będzie trzeba dać ilość kartów
 
 print('
        <tr>
-        <td><input type="submit" value="Zapisz" name="Zapisz" style="width: 100%; height: 100px"></td>
+        <td><input id="Zakoncz" type="submit" value="Zakoncz" name="Zakoncz" style="width: 100%; height: 100px"></td>
       </tr>
     </tbody>
   </table>
@@ -107,7 +108,7 @@ print('
 </div>
 <div id="czas" style="width: 50%; height: 100px; float: right">
 ');
-if(isset($_POST['Zapisz']))
+if(isset($_POST['Zakoncz']))
 {
   $ZakonczoneDAO = new ZakonczoneDAO();
   $ZakonczoneDTO = new ZakonczoneDTO();
@@ -122,22 +123,45 @@ if(isset($_POST['Zapisz']))
     $ZakonczoneDTO->iloscOkrazen = 10+$i;
     $ZakonczoneDTO->miejsce = $i+1;
     $ZakonczoneDAO->dodajDoZakonczonych($ZakonczoneDTO);
-
-
+    
+    
     //zakonczenie przejazdu
     $now = strtotime("now");
     $day = date('Y-m-d', $now);
     $time = date('H:i', $now);
     $przejazd->godzinaZakonczenia = $time;
     $przejazdDAO->modyfikujPrzejazd($przejazd);
-
+    
   }
-  
+  print("<a id='usun' href='index.php?s=nieukPrzejazdy' class='btn btn-primary'>Usuń"); 
 }
 
 print('
 </div><div id="rest" style="width: 50%; height: 100%; float: right">
-</div>');
+</div>
+<table>
+<tr>
+<td><div id="data"> </div></td>
+<td><div id="data">Czas: </div></td>
+<td><div id="zegarek">0</div></td>
+<td><div id="data">/60 Sekund</div></td>
+</tr>
+<tr>
+<td><div id="data"> </div></td>
+<td><div id="data"> </div></td>
+<td><div id="data"> </div></td>
+<td>
+<FORM METHOD="POST" NAME="background">
+  <INPUT TYPE="button" VALUE=" Rozpocznij/Wstrzymaj przejazd " ONCLICK="startclock()">
+  <INPUT TYPE="button" VALUE=" Restartuj odliczanie " ONCLICK="restart()">
+</FORM>
+</td>
+</tr>
+
+			
+      
+
+');
 
 }
 
@@ -145,3 +169,10 @@ print('
 
  
 ?>
+<script>
+			//tutaj dzieje się ostra Januszerka, php bardzo nie chciał współpracować z odświeżaniem strony po użyciu metody get/post(przy używaniu metod z panel admina)
+			//powodowało to, że strona nie odświerzała się poprawnie, a przy każdym manualnym odświerzeniu zostawała ponawiana komenda SQL. Problem obszedłem, tworzą w metodach button z hiperlinkiem
+			//zmieniającym "GET", jeśli JS zobaczy taki button od razu w niego "klika odświeżająć stronę
+      document.getElementById("usun").click();
+   
+</script>

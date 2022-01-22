@@ -8,7 +8,11 @@ include_once 'backend\PrzejazdDTO.php';
 
 $rezerwacjeDAO = new rezerwacjaDAO();
 $today = date("Y-m-d", strtotime("today"));
-$rezerwacje = $rezerwacjeDAO -> pobierzRezerwacjeZData($today);
+$rezerwacje = $rezerwacjeDAO->pobierzRezerwacjeZData($today);
+if($rezerwacje == null)
+{
+	return;
+}
 print('<table border="1">
          <tbody>
           <tr>

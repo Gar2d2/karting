@@ -32,6 +32,33 @@
             return $rezerwacje;
         }
 
+        public function pobierzPotwierdzoneRezerwacjeDlaPrzejazdu($przejazdId)
+        {
+            $connection = new DBConnector();
+            $rezerwacje[] = new RezerwacjaDTO();
+            $index = 0;
+            $query="SELECT * FROM `rezerwacja` WHERE idPrzejazdu='$przejazdId' AND potwierdzono = 1";
+            $result = mysqli_query($connection->GetBazaConnection(), $query);
+            if($result)
+            {
+                while($row = mysqli_fetch_array($result))
+                {
+                    $rezerwacje[$index] = new RezerwacjaDTO();
+                    $rezerwacje[$index]->id = $row['id'];
+                    $rezerwacje[$index]->idOsoby = $row['idOsoby'];
+                    $rezerwacje[$index]->idPrzejazdu = $row['idPrzejazdu'];
+                    $rezerwacje[$index]->potwierdzono = $row['potwierdzono'];
+                    $index++;
+                }
+            }
+            if($index == 0)
+            {
+                return null;
+            }
+            return $rezerwacje;
+        }
+
+
         public function pobierzRezerwacjeZData($Data)
         {
             $connection = new DBConnector();
@@ -40,18 +67,25 @@
 
             $przejazdy = $przejazdyDAO->pobierzPrzejazdyZData($Data);
             $j=0;
-            for($i=0;$i<count($przejazdy);$i++)
+            if($przejazdy)
             {
-               $rezerwacjePrzejazdu = $this->pobierzRezerwacjeDlaPrzejazdu($przejazdy[$i]->id);
-               for($k=0; $k<count($rezerwacjePrzejazdu); $k++)
-               {
-                    $rezerwacje[$j] = new RezerwacjaDTO();
-                    $rezerwacje[$j]->id = $rezerwacjePrzejazdu[$k]->id;
-                    $rezerwacje[$j]->idOsoby = $rezerwacjePrzejazdu[$k]->idOsoby;
-                    $rezerwacje[$j]->idPrzejazdu = $rezerwacjePrzejazdu[$k]->idPrzejazdu;
-                    $rezerwacje[$j]->potwierdzono = $rezerwacjePrzejazdu[$k]->potwierdzono;
-                    $j++;
-               }
+                for($i=0;$i<count($przejazdy);$i++)
+                {
+                   $rezerwacjePrzejazdu = $this->pobierzRezerwacjeDlaPrzejazdu($przejazdy[$i]->id);
+                   if(!$rezerwacjePrzejazdu)
+                   {
+                       continue;
+                   }
+                   for($k=0; $k<count($rezerwacjePrzejazdu); $k++)
+                   {
+                        $rezerwacje[$j] = new RezerwacjaDTO();
+                        $rezerwacje[$j]->id = $rezerwacjePrzejazdu[$k]->id;
+                        $rezerwacje[$j]->idOsoby = $rezerwacjePrzejazdu[$k]->idOsoby;
+                        $rezerwacje[$j]->idPrzejazdu = $rezerwacjePrzejazdu[$k]->idPrzejazdu;
+                        $rezerwacje[$j]->potwierdzono = $rezerwacjePrzejazdu[$k]->potwierdzono;
+                        $j++;
+                   }
+                }
             }
             return $rezerwacje;
         }
