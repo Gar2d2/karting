@@ -62,25 +62,25 @@
      function logout()
      {
       unset($_SESSION['role']);
+	  unset($_SESSION['login']);
       $url = 'index.php';
       header( "Location: $url" );
      }
-
+	include_once "autoryzacja.php";
      if(isset($_POST["loguj"]))
      {
 
-       include_once "autoryzacja.php";
+       
        if(!isset($_SESSION['role']) || $_SESSION['role'] == "Niezalogowano")
        {
        
        $_SESSION['role'] = loguj($_POST["login"], $_POST["password"]);
+	   $_SESSION['login'] = $_POST["login"];
        }
      }
 
      if(isset($_POST["rejestruj"]))
-     {
-
-       include_once "autoryzacja.php";
+     {;
        rejestruj($_POST["firstName"], $_POST["surname"], $_POST["loginRegister"], $_POST["passwordRegister"], "UZYTKOWNIK");
      }
 
@@ -93,5 +93,10 @@
      function getRole()
      {
       print($_SESSION['role']);
+     }
+	 
+	 function getLogin()
+     {
+      print($_SESSION['login']);
      }
 ?>

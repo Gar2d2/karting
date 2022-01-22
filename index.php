@@ -12,14 +12,23 @@
          <header>
                   <div style="width: 60%; height:100%; float:left; font-size: 40px; text-align: center">Strona główna</div>
 
-                  <div id="user" style="width: 30%; height:50%; float: left; text-align: center">Użytkownik: </div>
+                  <div id="user" style="width: 30%; height:50%; float: left; text-align: center">Użytkownik: 
+				  <?php
+				  include_once "loginForm/DBConnection.php";
+				  include_once ('loginForm/login.php');
+				  if (isset($_SESSION['login']))
+					{
+						getLogin();
+					}
+				  ?>
+				  
+				  </div>
 <div id="uprawnienia" style="width: 10%; height:100%; float: right; text-align: center"><img src="https://www.wykop.pl/cdn/c3201142/comment_159770217020SffhYpG1fscWoH5V1chw.jpg" style="border: 0" width="100%" height="100%" alt=""></div> 
     
                    <div id="uprawnienia" style="width: 30%; height:50%; float: left; text-align: center">
                    Uprawienia:
                    <?php
-include_once "loginForm/DBConnection.php";
-include_once ('loginForm/login.php');
+
 if (isset($_SESSION['role']))
 {
     getRole();
@@ -47,6 +56,10 @@ if (isset($_SESSION['role']))
                     </a>
                     </td>
                   </tr>
+				  <?php 
+				  if(isset($_SESSION['login']))
+				  {
+					  print('
                   <tr>
                     <td>
                     <a href="index.php?s=raporty">  
@@ -74,22 +87,24 @@ if (isset($_SESSION['role']))
                     <input type="submit" value="Warsztat" style="width: 100%; height: 64px; background-color: lightblue">  
                     </a>
                     </td>
-                  </tr>
+                  </tr> '); 	
+				  }
+				  ?>
                 </tbody>
               </table>
          </div>
          <div id="main">
               <?php
 
-              include_once 'backend\OsobaDAO.php';
-              $osobaDAO = new OsobaDAO();
-              $osobaDTO = $osobaDAO->pobierzOsobePoID(1);
-              print($osobaDTO->id);
-              print($osobaDTO->pseudonim);
-              print($osobaDTO->haslo);
-              print($osobaDTO->imie);
-              print($osobaDTO->nazwisko);
-              print($osobaDTO->uprawnienia);
+              #include_once 'backend\OsobaDAO.php';
+              #$osobaDAO = new OsobaDAO();
+              #$osobaDTO = $osobaDAO->pobierzOsobePoID(1);
+              #print($osobaDTO->id);
+              #print($osobaDTO->pseudonim);
+              #print($osobaDTO->haslo);
+              #print($osobaDTO->imie);
+              #print($osobaDTO->nazwisko);
+              #print($osobaDTO->uprawnienia);
 
 if (isset($_GET['s']))
 {
@@ -134,6 +149,8 @@ else
 			include_once "backend\przejazdDAO.php";
 			include_once "backend\RezerwacjaDAO.php";
 			include_once "backend\RezerwacjaDTO.php";
+			include_once "backend\OsobaDAO.php";
+			include_once "backend\OsobaDTO.php";
 			$przejazdDTO = new PrzejazdDTO();
 			$przejazdDTO->id = NULL;
 			$przejazdDTO->data = $_GET['dat'];
@@ -141,14 +158,21 @@ else
 			$przejazdDTO->godzinaZakonczenia = $_GET['endH'];
 			$przejazdDAO = new PrzejazdDAO();
 			$przejazdDAO->dodajPrzejazd($przejazdDTO);
-            echo $przejazdDTO->data;
+            #echo $przejazdDTO->data;
+			$osobaDTO = new OsobaDTO();
+			$osobaDAO = new OsobaDAO();
+		
+			$osobaDTO = $osobaDAO->pobierzOsobePoPseudonimie($_SESSION['login']);
+			$przejazd2 = $przejazdDAO->pobierzPrzejazdZDataIGodzina($przejazdDTO->data, $przejazdDTO->godzinaRozpoczecia);
 			$rezerwacjaDTO = new rezerwacjaDTO();
 			$rezerwacjaDTO->id = NULL; 
-			$rezerwacjaDTO->idOsoby = 2; #do zdobycia w pliku którego nie zaciągłem, do poprawy
-			$rezerwacjaDTO->idPrzejazdu = 5; #jakoś trzeba getować id przejazdu wstawionego przed chwilą
+			$rezerwacjaDTO->idOsoby = $osobaDTO->id;
+			$rezerwacjaDTO->idPrzejazdu = $przejazd2->id;
 			$rezerwacjaDTO->potwierdzono = 0; #0 - nie, 1 - tak;
 			$rezerwacjaDAO = new rezerwacjaDAO();
 			$rezerwacjaDAO->dodajRezerwacje($rezerwacjaDTO);
+			
+			print("<h2> Dziękujemy za zarezerwowanie przejazdu na dzień $przejazdDTO->data na godzinę $przejazdDTO->godzinaRozpoczecia! Pamiętaj aby zjawić się 15 minut przed rozpoczęciem biegu</h2>");
 
         }
         else
