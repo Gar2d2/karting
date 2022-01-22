@@ -3,6 +3,47 @@
     include_once 'backend\DBConnector.php';
     class OsobaDAO
     {
+
+        public function usunUprawnienia($id)
+        {
+            $connection = new DBConnector();
+            $query="UPDATE `osoba` SET `uprawnienia` = 'UZYTKOWNIK' WHERE id = '$id'";
+            $result = mysqli_query($connection->GetBazaConnection(), $query);
+            return $result;
+        }
+
+        public function edytujOsobe($id, $pseudonim, $imie, $nazwisko, $haslo, $uprawnienia)
+        {
+            $connection = new DBConnector();
+            $query="UPDATE `osoba` SET `pseudonim` = '$pseudonim', `haslo` = '$haslo',`imie` = '$imie',`nazwisko` = '$nazwisko', `uprawnienia` = '$uprawnienia' WHERE id = '$id'";
+            $result = mysqli_query($connection->GetBazaConnection(), $query);
+            return $result;
+        }
+    
+
+        public function pobierzOsoby()
+        {
+            $connection = new DBConnector();
+            $osoby[] = new OsobaDTO();
+            $index=0;
+            $query="SELECT * FROM `osoba`";
+            $result = mysqli_query($connection->GetBazaConnection(), $query);
+            if($result)
+            {
+                while($row = mysqli_fetch_array($result))
+                {
+                $osoby[$index] = new OsobaDTO();
+                $osoby[$index]->id = $row['id'];
+                $osoby[$index]->pseudonim= $row['pseudonim'];
+                $osoby[$index]->haslo= $row['haslo'];
+                $osoby[$index]->imie= $row['imie'];
+                $osoby[$index]->nazwisko= $row['nazwisko'];
+                $osoby[$index]->uprawnienia= $row['uprawnienia'];
+                $index++;
+                }
+            }
+            return $osoby;
+        }
         
         public function pobierzOsobePoID($osobaID)
         {
