@@ -19,6 +19,12 @@
 				  <?php
 				  include_once "loginForm/DBConnection.php";
 				  include_once ('loginForm/login.php');
+          include_once "backend\przejazdDTO.php";
+			    include_once "backend\przejazdDAO.php";
+			    include_once "backend\RezerwacjaDAO.php";
+			    include_once "backend\RezerwacjaDTO.php";
+			    include_once "backend\OsobaDAO.php";
+			    include_once "backend\OsobaDTO.php";
 				  if (isset($_SESSION['login']))
 					{
 						getLogin();
@@ -79,7 +85,7 @@ if (isset($_SESSION['role']))
                   </tr>
                   <tr>
                     <td>
-                    <a href="index.php?s=sysetmUsers">  
+                    <a href="index.php?s=systemUsers">  
                     <input type="submit" value="Użytkownicy Systemu" style="width: 100%; height: 64px; background-color: lightblue">  
                     </a>
                     </td>
@@ -128,6 +134,12 @@ if (isset($_GET['s']))
 		case "acceptRezerwacja":
 			include_once "przejazdy/acceptRezerwacja.php";
 		break;
+		case "zakonczonePrzejazdy":
+			include_once "przejazdy/zakonczonePrzejazdy.php";
+		break;
+		case "su":
+			include_once "systemUsers/su.php";
+		break;
     }
 }
 else
@@ -141,12 +153,7 @@ else
     {
         if (isset($_GET['startH']))
         {
-			include_once "backend\przejazdDTO.php";
-			include_once "backend\przejazdDAO.php";
-			include_once "backend\RezerwacjaDAO.php";
-			include_once "backend\RezerwacjaDTO.php";
-			include_once "backend\OsobaDAO.php";
-			include_once "backend\OsobaDTO.php";
+			
 			$przejazdDTO = new PrzejazdDTO();
 			$przejazdDTO->id = NULL;
 			$przejazdDTO->data = $_GET['dat'];
@@ -182,7 +189,31 @@ else
 				
 			} else
 			{
-				if (!isset($_SESSION['role']))
+       if(isset($_GET['detail']))
+       {
+        
+				include_once "backend\ZakonczoneDAO.php";
+				include_once "backend\ZakonczoneDTO.php";
+        $zakonczoneDAO = new zakonczoneDAO();
+        $zakonczoneDAO->pokazSzczegoly($_GET['detail']);
+       } else
+       {
+        if(isset($_GET['del']))
+        {
+         $osobaDAO = new osobaDAO();
+         $osobaDAO->usunUprawnienia($_GET['uid']);
+        }
+        
+        if(isset($_GET['edy']))
+        {
+				 include_once "systemUsers\Edycja.php";
+        }
+        if(isset($_GET['uEdit']))
+        {
+         $osobaDAO = new osobaDAO();
+         $osobaDAO->edytujOsobe($_GET['id'], $_GET['pseudonim'], $_GET['imie'], $_GET['nazwisko'], $_GET['haslo'], $_GET['uprawnienia']);
+        }
+       	if (!isset($_SESSION['role']))
             {
                 print ('
                 <form action="" method="post">
@@ -211,6 +242,8 @@ else
             {
                 print (logoutForm());
             }
+       }
+			
 			}
         }
 

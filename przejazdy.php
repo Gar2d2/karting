@@ -5,6 +5,11 @@
                 <tbody>
                   <tr>
                     <td>
+                    <a href="index.php?s=zakonczonePrzejazdy">  
+                    <input type="submit" value="Przejdź do zakonczonych przejazdow" style="width: 100%; height: 100px">  
+                    </a>
+                    </td>
+					<td>
                     <a href="index.php?s=rezerwacja">  
                     <input type="submit" value="Przejdź do rezerwacji" style="width: 100%; height: 100px">  
                     </a>
@@ -21,7 +26,6 @@
                     <input type="submit" value="Przejdź do rezerwacji klientów" style="width: 100%; height: 100px">  
                     </a>
 					<td>
-                    </td><td>
                     </td>');
 					}
                     
