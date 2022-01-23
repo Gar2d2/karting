@@ -92,13 +92,6 @@ if (isset($_SESSION['role']))
 														</td>
 													</tr>
 
-														<tr>
-															<td>
-																<a href="index.php?s=systemUsers">
-																	<input type="submit" value="Użytkownicy Systemu" style="width: 100%; height: 64px; background-color: lightblue">
-																	</a>
-																</td>
-															</tr>
 															<tr>
 																<td>
 																	<a href="index.php?s=warsztat">
@@ -106,6 +99,16 @@ if (isset($_SESSION['role']))
 																		</a>
 																	</td>
 																</tr> '); 	
+					if(isset($_SESSION['login'] and $_SESSION['role'] == "KIEROWNIK"))
+					{
+					print('<tr>
+															<td>
+																<a href="index.php?s=systemUsers">
+																	<input type="submit" value="Użytkownicy Systemu" style="width: 100%; height: 64px; background-color: lightblue">
+																	</a>
+																</td>
+															</tr>');		
+					}
 				  }
 				  ?>
           </tbody>
