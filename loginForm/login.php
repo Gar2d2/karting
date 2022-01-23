@@ -77,6 +77,10 @@
        $_SESSION['role'] = loguj($_POST["login"], $_POST["password"]);
 	   $_SESSION['login'] = $_POST["login"];
        }
+	   if($_SESSION['role']==-1)
+	   {
+		   logout();
+	   }
      }
 
      if(isset($_POST["rejestruj"]))

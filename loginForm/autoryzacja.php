@@ -3,7 +3,7 @@ include_once 'backend\DBConnector.php';
 function loguj($login, $haslo)
 {
     $connection = new DBConnector();
-    $query="SELECT * FROM `osoba` WHERE pseudonim='$login'";
+    $query="SELECT * FROM `osoba` WHERE pseudonim='$login' and haslo='$haslo'";
     $result = mysqli_query($connection->GetBazaConnection(), $query);
     if($row = mysqli_fetch_array($result, MYSQLI_BOTH))
     {
