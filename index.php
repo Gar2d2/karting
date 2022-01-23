@@ -22,6 +22,10 @@
 			    include_once "backend\RezerwacjaDTO.php";
 			    include_once "backend\OsobaDAO.php";
 			    include_once "backend\OsobaDTO.php";
+          include_once 'backend\SekcjaDTO.php';
+          include_once 'backend\SekcjaDAO.php';
+          include_once 'backend\RaportDTO.php';
+          include_once 'backend\RaportDAO.php';
 				  if (isset($_SESSION['login']))
 					{
 						getLogin();
@@ -242,10 +246,6 @@ else
             {
                 if(isset($_GET['podglad']))
                 {
-                 include_once 'backend\SekcjaDTO.php';
-                 include_once 'backend\SekcjaDAO.php';
-                 include_once 'backend\RaportDTO.php';
-                 include_once 'backend\RaportDAO.php';
                  $sekcjaDAO = new sekcjaDAO();
                  $raporty = $sekcjaDAO->pobierzSekcjeDlaRaportu($_GET['rid']);
                  $osobaDAO = new osobaDAO();
@@ -318,7 +318,20 @@ else
 																</table");
                   }
                  }
-                } else
+                } else if(isset($_GET['raportEdit']))
+                {
+                 include_once("raporty\EditRaport.php");                         
+                } 
+                if(isset($_GET['saveRaport']))
+                {
+                 $sekcjaDAO = new sekcjaDAO();
+                 $sekcjaDTO = new sekcjaDTO();
+                 $sekcjaDTO->id = $_GET['sid'];
+                 $sekcjaDTO->tytul = $_GET['tytul'];
+                 $sekcjaDTO->tresc = $_GET['tresc'];
+                 $sekcjaDAO->modyfikujSkecje($sekcjaDTO);
+                }
+                else
                 {      
                 print (logoutForm());
                 }
