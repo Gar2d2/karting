@@ -12,10 +12,10 @@
             return $result;
         }
 
-        public function edytujOsobe($id, $pseudonim, $imie, $nazwisko, $haslo, $uprawnienia)
+        public function edytujOsobe($id, $pseudonim, $imie, $nazwisko, $haslo, $uprawnienia, $zdjecie)
         {
             $connection = new DBConnector();
-            $query="UPDATE `osoba` SET `pseudonim` = '$pseudonim', `haslo` = '$haslo',`imie` = '$imie',`nazwisko` = '$nazwisko', `uprawnienia` = '$uprawnienia' WHERE id = '$id'";
+            $query="UPDATE `osoba` SET `pseudonim` = '$pseudonim', `haslo` = '$haslo',`imie` = '$imie',`nazwisko` = '$nazwisko', `uprawnienia` = '$uprawnienia', `zdjecie`= 'zdjecie' WHERE id = '$id'";
             $result = mysqli_query($connection->GetBazaConnection(), $query);
             return $result;
         }
@@ -39,6 +39,8 @@
                 $osoby[$index]->imie= $row['imie'];
                 $osoby[$index]->nazwisko= $row['nazwisko'];
                 $osoby[$index]->uprawnienia= $row['uprawnienia'];
+                $osoby[$index]->zdjecie= $row['zdjecie'];
+                
                 $index++;
                 }
             }
@@ -61,6 +63,7 @@
                     $osoba->imie= $row['imie'];
                     $osoba->nazwisko= $row['nazwisko'];
                     $osoba->uprawnienia= $row['uprawnienia'];
+                    $osoba->zdjecie= $row['zdjecie'];
                 }
             }
             return $osoba;
@@ -81,6 +84,7 @@
                 $osoba->imie= $row['imie'];
                 $osoba->nazwisko= $row['nazwisko'];
                 $osoba->uprawnienia= $row['uprawnienia'];
+                $osoba->zdjecie= $row['zdjecie'];
             }
             return $osoba;
         }

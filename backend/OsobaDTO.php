@@ -8,6 +8,7 @@
         public $imie;
         public $nazwisko;
         public $uprawnienia;
+        public $zdjecie;
     }
 ?>
 
