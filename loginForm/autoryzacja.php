@@ -14,7 +14,7 @@ function loguj($login, $haslo)
     }
     return -1;
 }
-function rejestruj($imie, $nazwisko, $pseudonim, $haslo, $uprawnienia)
+function rejestruj($imie, $nazwisko, $pseudonim, $haslo, $uprawnienia, $zdjecie)
 {
     $connection = new DBConnector();
     $query="SELECT * FROM `osoba` WHERE pseudonim='$pseudonim'";
@@ -22,7 +22,7 @@ function rejestruj($imie, $nazwisko, $pseudonim, $haslo, $uprawnienia)
     //sprawdzenie czy nie ma juz kogos w bazie z takim pseudonimem 
     if(!$row = mysqli_fetch_array($result, MYSQLI_BOTH))
     {
-        $query="INSERT INTO `osoba` (`id`, `pseudonim`, `haslo`, `imie`, `nazwisko`, `uprawnienia`) VALUES (NULL, '$pseudonim', '$haslo', '$imie', '$nazwisko', '$uprawnienia')";
+        $query="INSERT INTO `osoba` (`id`, `pseudonim`, `haslo`, `imie`, `nazwisko`, `uprawnienia`, `zdjecie`) VALUES (NULL, '$pseudonim', '$haslo', '$imie', '$nazwisko', '$uprawnienia', '$zdjecie')";
         $result = mysqli_query($connection->GetBazaConnection(), $query);
         return 1;
     }  

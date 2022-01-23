@@ -41,6 +41,10 @@
                       <td><input name="surname" id="surname" type="text"></td>
                     </tr>
                     <tr>
+                      <td>Link do zdjęcia: </td>
+                      <td><input name="photo" id="photo" type="text"></td>
+                    </tr>
+                    <tr>
                       <td><input type="submit" value="Zarejestruj się" name="rejestruj"></td>
                     </tr>
                   </tbody>
@@ -94,8 +98,8 @@
      }
 
      if(isset($_POST["rejestruj"]))
-     {;
-       rejestruj($_POST["firstName"], $_POST["surname"], $_POST["loginRegister"], $_POST["passwordRegister"], "UZYTKOWNIK");
+     {
+       rejestruj($_POST["firstName"], $_POST["surname"], $_POST["loginRegister"], $_POST["passwordRegister"], "UZYTKOWNIK", $_POST['photo']);
      }
 
 

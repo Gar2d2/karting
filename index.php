@@ -12,7 +12,7 @@
   <body>
     <div id="box">
       <header>
-        <div style="width: 60%; height:100%; float:left; font-size: 40px; text-align: center">Strona główna</div>
+        <div style="width: 60%; height:100%; float:left; font-size: 40px; text-align: center">Tor karingowy</div>
         <div id="user" style="width: 30%; height:50%; float: left; text-align: center">Użytkownik: <?php
 				  include_once "loginForm/DBConnection.php";
 				  include_once ('loginForm/login.php');
@@ -32,7 +32,16 @@
 					}
 				  ?> </div>
         <div id="uprawnienia" style="width: 10%; height:100%; float: right; text-align: center">
-          <img src="https://www.wykop.pl/cdn/c3201142/comment_159770217020SffhYpG1fscWoH5V1chw.jpg" style="border: 0" width="100%" height="100%" alt="">
+		  <?php
+		 if (isset($_SESSION['login']))
+					{
+						
+		  $osobaDAO = new OsobaDAO();
+		  $zdjecie = $osobaDAO->pobierzZdjeciePoPseudonimie($_SESSION['login']);
+		   print("
+          <img src='$zdjecie' style='border: 0' width='100%' height='100%'>");
+					}
+		  ?>
         </div>
         <div id="uprawnienia" style="width: 30%; height:50%; float: left; text-align: center"> Uprawienia: <?php
 

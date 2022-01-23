@@ -3,6 +3,22 @@
     include_once 'backend\DBConnector.php';
     class OsobaDAO
     {
+		
+		 public function pobierzZdjeciePoPseudonimie($pseudonim)
+        {
+            $connection = new DBConnector();
+            $osoba;
+            $query="SELECT * FROM `osoba` WHERE pseudonim = '$pseudonim'";
+            $result = mysqli_query($connection->GetBazaConnection(), $query);
+            if($result)
+            {
+                if($row = mysqli_fetch_array($result))
+                {
+                    $osoba = $row['zdjecie'];
+                }
+            }
+            return $osoba;
+        }
 
         public function usunUprawnienia($id)
         {
