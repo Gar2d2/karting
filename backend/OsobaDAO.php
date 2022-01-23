@@ -31,7 +31,7 @@
         public function edytujOsobe($id, $pseudonim, $imie, $nazwisko, $haslo, $uprawnienia, $zdjecie)
         {
             $connection = new DBConnector();
-            $query="UPDATE `osoba` SET `pseudonim` = '$pseudonim', `haslo` = '$haslo',`imie` = '$imie',`nazwisko` = '$nazwisko', `uprawnienia` = '$uprawnienia', `zdjecie`= 'zdjecie' WHERE id = '$id'";
+            $query="UPDATE `osoba` SET `pseudonim` = '$pseudonim', `haslo` = '$haslo',`imie` = '$imie',`nazwisko` = '$nazwisko', `uprawnienia` = '$uprawnienia', `zdjecie`= '$zdjecie' WHERE id = '$id'";
             $result = mysqli_query($connection->GetBazaConnection(), $query);
             return $result;
         }

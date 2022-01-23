@@ -222,7 +222,7 @@ else
         if(isset($_GET['uEdit']))
         {
          $osobaDAO = new osobaDAO();
-         $osobaDAO->edytujOsobe($_GET['id'], $_GET['pseudonim'], $_GET['imie'], $_GET['nazwisko'], $_GET['haslo'], $_GET['uprawnienia']);
+         $osobaDAO->edytujOsobe($_GET['id'], $_GET['pseudonim'], $_GET['imie'], $_GET['nazwisko'], $_GET['haslo'], $_GET['uprawnienia'], $_GET['zdjecie']);
         }
        	if (!isset($_SESSION['role']))
             {

@@ -20,6 +20,7 @@ print("<tr>
                  <td><input readonly value='$osoba->imie'></td>
                  <td><input readonly value='$osoba->nazwisko'></td>
                  <td><input readonly value='$osoba->uprawnienia'></td>
+                 <td><img src='$osoba->zdjecie' style='border: 0' width='100px' height='100px'></td>
                  <td>PODGLĄD</td>
                </tr>
                <tr>
@@ -37,10 +38,11 @@ print("<tr>
                    <option>PRACOWNIK_RECEPCJI</option>
                    <option>PRACOWNIK_WARSZTATU</option>
                  </select>
-
+	
+                 <td><input name='zdjecie' value='$osoba->zdjecie'></td>
                  </td>
                </tr>
-               <td colspan='6'><input name='uEdit' type='submit' value='Zapisz' style='width: 100%'/></td>");
+               <td colspan='7'><input name='uEdit' type='submit' value='Zapisz' style='width: 100%'/></td>");
              print('</tbody>
            </table>
          </form>');
