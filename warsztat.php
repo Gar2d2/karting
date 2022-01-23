@@ -5,7 +5,7 @@
                 <tbody>
                   <tr>
                     <td>
-                    <a href="Raporty/zarzadzajRaportami.php">  
+                    <a href="index.php?s=naprawy">  
                     <input type="submit" value="Przejdź do warsztatu" style="width: 100%; height: 100px" >  
                     </a>
                     </td><td>

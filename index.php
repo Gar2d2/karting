@@ -138,6 +138,9 @@ if (isset($_GET['s']))
 		case "su":
 			include_once "systemUsers/su.php";
 		break;
+		case "naprawy":
+			include_once "warsztat/naprawy.php";
+		break;
     }
 }
 else
@@ -350,6 +353,33 @@ else
                  $raportID = $raportDAO->pobierzRaportyZData($today)[0]->id;
                  $sekcjaDTO->idRaportu = $raportID;
                  $sekcjaDAO->dodajSekcje($sekcjaDTO);
+                }
+                if(isset($_GET['repair']))
+                {                         
+                 include_once "warsztat\EditNaprawy.php";
+                }
+                if(isset($_GET['setRepair']))
+                {                         
+                 include_once "backend\NaprawyDAO.php";
+                 include_once "backend\NaprawyDTO.php";
+                 $naprawyDAO = new naprawyDAO();
+                 $naprawyDAO->aktualizacjaNaprawy($_GET['rid'], $_GET['status']);
+                }
+                if(isset($_GET['newRepair']))
+                {
+                
+                 include_once "warsztat\NowaNaprawa.php";
+                }
+                if(isset($_GET['addNewRepair']))
+                {
+                 include_once "backend\NaprawyDAO.php";
+                 include_once "backend\NaprawyDTO.php";
+                 $today = date("Y-m-d", strtotime("now"));
+                 $naprawyDAO = new naprawyDAO();
+                 $osobaDAO = new osobaDAO();
+                 $osoba = $osobaDAO->pobierzOsobePoPseudonimie($_SESSION['login']);
+                 $osobaID = $osoba->id;
+                 $naprawyDAO->dodajNowa($today, $_GET['idKart'], $osobaID, $_GET['usterka']);
                 }
                 else
                 {      
