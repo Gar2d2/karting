@@ -99,7 +99,7 @@ if (isset($_SESSION['role']))
 																		</a>
 																	</td>
 																</tr> '); 	
-					if(isset($_SESSION['login'] and $_SESSION['role'] == "KIEROWNIK"))
+					if(null != $_SESSION['login'] and $_SESSION['role'] == "KIEROWNIK")
 					{
 					print('<tr>
 															<td>
