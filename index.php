@@ -70,7 +70,17 @@ if (isset($_SESSION['role']))
                 </a>
               </td>
             </tr> <?php 
-				  if(isset($_SESSION['login']))
+			      if(isset($_SESSION['login']))
+				  {
+					  print('<tr>
+														<td>
+															<a href="index.php?s=przejazdy">
+																<input type="submit" value="Przejazdy" style="width: 100%; height: 64px; background-color: lightblue">
+																</a>
+															</td>
+														</tr>');
+				  }
+				  if(isset($_SESSION['login']) and $_SESSION['role'] != "UZYTKOWNIK")
 				  {
 					  print('
                   
@@ -81,13 +91,7 @@ if (isset($_SESSION['role']))
 															</a>
 														</td>
 													</tr>
-													<tr>
-														<td>
-															<a href="index.php?s=przejazdy">
-																<input type="submit" value="Przejazdy" style="width: 100%; height: 64px; background-color: lightblue">
-																</a>
-															</td>
-														</tr>
+
 														<tr>
 															<td>
 																<a href="index.php?s=systemUsers">
