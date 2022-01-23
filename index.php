@@ -217,16 +217,22 @@ else
         {
          $osobaDAO = new osobaDAO();
          $osobaDAO->usunUprawnienia($_GET['uid']);
+		$_GET['su'] = "t";
+		header( "Location: index.php?s=su" );
         }
         
         if(isset($_GET['edy']))
         {
 				 include_once "systemUsers\Edycja.php";
+				 
         }
         if(isset($_GET['uEdit']))
         {
          $osobaDAO = new osobaDAO();
          $osobaDAO->edytujOsobe($_GET['id'], $_GET['pseudonim'], $_GET['imie'], $_GET['nazwisko'], $_GET['haslo'], $_GET['uprawnienia'], $_GET['zdjecie']);
+		 
+		$_GET['su'] = "t";
+		header( "Location: index.php?s=su" );
         }
        	if (!isset($_SESSION['role']))
             {
@@ -376,6 +382,8 @@ else
                  $sekcjaDTO->idRaportu = $raportID;
                  $sekcjaDAO->dodajSekcje($sekcjaDTO);
 				 }
+				 $_GET['zarzadzajRaportami'] = "t";
+			     header( "Location: index.php?s=zarzadzajRaportami" );
                 }
                 if(isset($_GET['repair']))
                 {                         
