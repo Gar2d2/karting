@@ -1,8 +1,8 @@
 <?php
-    include_once 'backend\ZakonczoneDTO.php';
-    include_once 'backend\OsobaDAO.php';
-    include_once 'backend\PrzejazdDAO.php';
-    include_once 'backend\DBConnector.php';
+    include_once 'backend/ZakonczoneDTO.php';
+    include_once 'backend/OsobaDAO.php';
+    include_once 'backend/PrzejazdDAO.php';
+    include_once 'backend/DBConnector.php';
     class ZakonczoneDAO
     {
         

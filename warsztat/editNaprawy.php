@@ -1,6 +1,6 @@
 <?php
-include_once "backend\NaprawyDTO.php";
-include_once "backend\NaprawyDAO.php";
+include_once "backend/NaprawyDTO.php";
+include_once "backend/NaprawyDAO.php";
                 $naprawyDAO = new NaprawyDAO();
                 $naprawa = $naprawyDAO->pobierzNaprawepoID($_GET['rid']);
                 print("<table border='1'>

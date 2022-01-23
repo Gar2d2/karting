@@ -1,6 +1,6 @@
 <?php
-include_once "backend\osobaDAO.php";
-include_once "backend\osobaDTO.php";
+include_once "backend/OsobaDAO.php";
+include_once "backend/OsobaDTO.php";
   print("<table border='1'>
            <tbody>
              <tr>

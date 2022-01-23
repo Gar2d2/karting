@@ -1,5 +1,5 @@
 <?php
-include_once 'backend\DBConnector.php';
+include_once 'backend/DBConnector.php';
 function loguj($login, $haslo)
 {
     $connection = new DBConnector();

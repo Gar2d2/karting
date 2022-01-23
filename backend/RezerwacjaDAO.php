@@ -1,7 +1,7 @@
 <?php
-    include_once 'backend\RezerwacjaDTO.php';
-    include_once 'backend\DBConnector.php';
-    include_once 'backend\PrzejazdDAO.php';
+    include_once 'backend/RezerwacjaDTO.php';
+    include_once 'backend/DBConnector.php';
+    include_once 'backend/PrzejazdDAO.php';
 
     class RezerwacjaDAO
     {

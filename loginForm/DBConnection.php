@@ -1,8 +1,8 @@
 <?php
   $dbhost = 'localhost';
-  $dbuser = 'root';
-  $dbpass = '';
-  $baza = 'tor_kartingowy';
+  $dbuser = 'torkartingowy999_torkartingowy';
+  $dbpass = 'jzfw3d3uk5';
+  $baza = 'torkartingowy999_torkartingowy';
   
   $link = mysqli_connect($dbhost, $dbuser, $dbpass, $baza);
   $_SESSION['link']= $link;

@@ -5,8 +5,8 @@ print('
              <tr >
                <td colspan="3" style="width: 1050px; text-align: center">Lista dostępnych raportów</td>
              </tr>');
-include_once("backend\RaportDAO.php");         
-include_once("backend\RaportDTO.php");
+include_once("backend/RaportDAO.php");         
+include_once("backend/RaportDTO.php");
 
 $raportDAO = new RaportDAO();
 $raporty;

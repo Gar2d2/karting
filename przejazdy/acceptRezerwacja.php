@@ -1,10 +1,10 @@
 <?php
-include_once 'backend\RezerwacjaDTO.php';
-include_once 'backend\RezerwacjaDAO.php';
-include_once 'backend\OsobaDAO.php';
-include_once 'backend\OsobaDTO.php';
-include_once 'backend\PrzejazdDAO.php';
-include_once 'backend\PrzejazdDTO.php';
+include_once 'backend/RezerwacjaDTO.php';
+include_once 'backend/RezerwacjaDAO.php';
+include_once 'backend/OsobaDAO.php';
+include_once 'backend/OsobaDTO.php';
+include_once 'backend/PrzejazdDAO.php';
+include_once 'backend/PrzejazdDTO.php';
 
 $rezerwacjeDAO = new rezerwacjaDAO();
 $today = date("Y-m-d", strtotime("today"));

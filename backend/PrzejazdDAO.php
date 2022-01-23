@@ -1,6 +1,6 @@
 <?php
-    include_once 'backend\PrzejazdDTO.php';
-    include_once 'backend\DBConnector.php';
+    include_once 'backend/PrzejazdDTO.php';
+    include_once 'backend/DBConnector.php';
     class PrzejazdDAO
     {
     

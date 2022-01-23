@@ -1,6 +1,6 @@
 <?php
-include_once "backend\PrzejazdDAO.php";
-include_once "backend\PrzejazdDTO.php";
+include_once "backend/PrzejazdDAO.php";
+include_once "backend/PrzejazdDTO.php";
 
 $przejazdDAO = new PrzejazdDAO();
 $przejazdy = $przejazdDAO->pobierzPrzejazdy();

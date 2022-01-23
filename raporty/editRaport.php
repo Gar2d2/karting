@@ -1,4 +1,12 @@
 <?php
+
+function placeholder()
+	{
+		
+				 $_GET['addRaport'] = "t";
+			     header( "Location: index.php?addRaport=addRaport" );
+	}
+
 $sekcjaDAO = new sekcjaDAO();
                  $sekcje = $sekcjaDAO->pobierzSekcjeDlaRaportu($_GET['rid']);
                  $sekcja = null;
@@ -15,9 +23,9 @@ $sekcjaDAO = new sekcjaDAO();
                    $sekcja = $s;
                   }
                  }
-                 if($sekcja)
-                 {
-                   print("<table border='1'>
+				 if(!is_null($sekcja))
+				 {
+					 print("<table border='1'>
                                 <tbody>
                                   <tr>
                                     <td colspan='3'>Edytuj raport</td>
@@ -34,16 +42,19 @@ $sekcjaDAO = new sekcjaDAO();
                                   </form>
                                 </tbody>
                               </table>");    
-                 }
-                 else
-                 {
-                   print("<script>
-                          window.alert('Twoja czesc nie została jeszcze utworzona, zostaniesz przeniesiony do widoku dodawania swojej czesci');
-                        </script>");
-                 }
-                 print("<a id='usun' href='index.php?addRaport=Dodaj+nowy+raport' class='btn btn-primary'>Usuń"); 
+				 } else
+				 {
+				echo '<script type="text/javascript">'; 
+				echo 'alert("Twoja czesc nie została jeszcze utworzona, zostaniesz przeniesiony do widoku dodawania swojej czesci");';
+				echo 'window.location.href = "index.php?addRaport=Dodaj+nowy+raport";';
+				echo '</script>';
+				 }
+                   
                 }
+				
+	
 ?>
 <script>
       document.getElementById("usun").click();
 </script>
+

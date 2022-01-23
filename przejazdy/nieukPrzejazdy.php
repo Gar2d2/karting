@@ -1,11 +1,11 @@
 
 <?php
-    include_once 'backend\PrzejazdDTO.php';
-    include_once 'backend\PrzejazdDAO.php';
-    include_once 'backend\GokartDAO.php';
-    include_once 'backend\RezerwacjaDAO.php';
-    include_once 'backend\OsobaDAO.php';
-    include_once 'backend\ZakonczoneDAO.php';
+    include_once 'backend/PrzejazdDTO.php';
+    include_once 'backend/PrzejazdDAO.php';
+    include_once 'backend/GokartDAO.php';
+    include_once 'backend/RezerwacjaDAO.php';
+    include_once 'backend/OsobaDAO.php';
+    include_once 'backend/ZakonczoneDAO.php';
   print('
 
 <script>

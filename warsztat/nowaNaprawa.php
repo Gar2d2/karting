@@ -1,6 +1,6 @@
 <?php
-  include_once "backend\NaprawyDAO.php";
-  include_once "backend\NaprawyDTO.php";
+  include_once "backend/NaprawyDAO.php";
+  include_once "backend/NaprawyDTO.php";
   print("
 
 

@@ -2,9 +2,9 @@
     class DBConnector
     {
         public $dbhost = 'localhost';
-        public $dbuser = 'root';
-        public $dbpass = '';
-        public $baza = 'tor_kartingowy';
+        public $dbuser = 'torkartingowy999_torkartingowy';
+        public $dbpass = 'jzfw3d3uk5';
+        public $baza = 'torkartingowy999_torkartingowy';
         public $link;
 
         public function GetBazaConnection()

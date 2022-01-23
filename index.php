@@ -16,16 +16,16 @@
         <div id="user" style="width: 30%; height:50%; float: left; text-align: center">Użytkownik: <?php
 				  include_once "loginForm/DBConnection.php";
 				  include_once ('loginForm/login.php');
-          include_once "backend\przejazdDTO.php";
-			    include_once "backend\przejazdDAO.php";
-			    include_once "backend\RezerwacjaDAO.php";
-			    include_once "backend\RezerwacjaDTO.php";
-			    include_once "backend\OsobaDAO.php";
-			    include_once "backend\OsobaDTO.php";
-          include_once 'backend\SekcjaDTO.php';
-          include_once 'backend\SekcjaDAO.php';
-          include_once 'backend\RaportDTO.php';
-          include_once 'backend\RaportDAO.php';
+          include_once "backend/PrzejazdDTO.php";
+			    include_once "backend/PrzejazdDAO.php";
+			    include_once "backend/RezerwacjaDAO.php";
+			    include_once "backend/RezerwacjaDTO.php";
+			    include_once "backend/OsobaDAO.php";
+			    include_once "backend/OsobaDTO.php";
+          include_once 'backend/SekcjaDTO.php';
+          include_once 'backend/SekcjaDAO.php';
+          include_once 'backend/RaportDTO.php';
+          include_once 'backend/RaportDAO.php';
 				  if (isset($_SESSION['login']))
 					{
 						getLogin();
@@ -200,8 +200,8 @@ else
         {
 			if(isset($_GET['rez']))
 			{
-				include_once "backend\RezerwacjaDTO.php";
-				include_once "backend\RezerwacjaDAO.php";
+				include_once "backend/RezerwacjaDTO.php";
+				include_once "backend/RezerwacjaDAO.php";
 				$rezerwacjaDAO = new rezerwacjaDAO();
 				$rezerwacjaDAO->potwierdzRezerwacje($_GET['rez']);
 				
@@ -210,8 +210,8 @@ else
        if(isset($_GET['detail']))
        {
         
-				include_once "backend\ZakonczoneDAO.php";
-				include_once "backend\ZakonczoneDTO.php";
+				include_once "backend/ZakonczoneDAO.php";
+				include_once "backend/ZakonczoneDTO.php";
         $zakonczoneDAO = new zakonczoneDAO();
         $zakonczoneDAO->pokazSzczegoly($_GET['detail']);
        } else
@@ -226,7 +226,7 @@ else
         
         if(isset($_GET['edy']))
         {
-				 include_once "systemUsers\Edycja.php";
+				 include_once "systemUsers/Edycja.php";
 				 
         }
         if(isset($_GET['uEdit']))
@@ -345,7 +345,7 @@ else
                  }
                 } else if(isset($_GET['raportEdit']))
                 {
-                 include_once("raporty\EditRaport.php");                         
+                 include_once("raporty/editRaport.php");                         
                 } 
                 if(isset($_GET['saveRaport']))
                 {
@@ -358,7 +358,7 @@ else
                 } 
                  if(isset($_GET['addRaport']))
                 {
-                 include_once("raporty\AddRaport.php");   
+                 include_once("raporty/addRaport.php");   
                 }
                 if(isset($_GET['ar']))
                 {
@@ -390,12 +390,12 @@ else
                 }
                 if(isset($_GET['repair']))
                 {                         
-                 include_once "warsztat\EditNaprawy.php";
+                 include_once "warsztat/editNaprawy.php";
                 }
                 if(isset($_GET['setRepair']))
                 {                         
-                 include_once "backend\NaprawyDAO.php";
-                 include_once "backend\NaprawyDTO.php";
+                 include_once "backend/NaprawyDAO.php";
+                 include_once "backend/NaprawyDTO.php";
                  $naprawyDAO = new naprawyDAO();
                  $naprawyDAO->aktualizacjaNaprawy($_GET['rid'], $_GET['status']);
 			$_GET['naprawy'] = "t";
@@ -404,12 +404,12 @@ else
                 if(isset($_GET['newRepair']))
                 {
                 
-                 include_once "warsztat\NowaNaprawa.php";
+                 include_once "warsztat/nowaNaprawa.php";
                 }
                 if(isset($_GET['addNewRepair']))
                 {
-                 include_once "backend\NaprawyDAO.php";
-                 include_once "backend\NaprawyDTO.php";
+                 include_once "backend/NaprawyDAO.php";
+                 include_once "backend/NaprawyDTO.php";
                  $today = date("Y-m-d", strtotime("now"));
                  $naprawyDAO = new naprawyDAO();
                  $osobaDAO = new osobaDAO();
