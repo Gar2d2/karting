@@ -349,10 +349,20 @@ else
                  $osobaID = $osoba->id;
                  $sekcjaDTO->idOsoby = $osobaID;
                  $raportDAO = new raportDAO();
+				 
                  $today = date('Y-m-d', strtotime("now"));
+                 $raportID = $raportDAO->pobierzRaportyZData($today)[0]->id;
+				 if(empty($raportID))
+				 {
+				 $raportDAO->dodajRaport();	 
                  $raportID = $raportDAO->pobierzRaportyZData($today)[0]->id;
                  $sekcjaDTO->idRaportu = $raportID;
                  $sekcjaDAO->dodajSekcje($sekcjaDTO);
+				 } else
+				 {
+                 $sekcjaDTO->idRaportu = $raportID;
+                 $sekcjaDAO->dodajSekcje($sekcjaDTO);
+				 }
                 }
                 if(isset($_GET['repair']))
                 {                         
