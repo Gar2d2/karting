@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
-		<script src="./ScriptJs/timedate.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	
+    <script src="./ScriptJs/timedate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Tor karingowy</title>
     <meta charset="UTF-8">
     <meta name="Generator" content="JTHTML 8.6">
@@ -12,11 +11,9 @@
   </head>
   <body>
     <div id="box">
-         <header>
-                  <div style="width: 60%; height:100%; float:left; font-size: 40px; text-align: center">Strona główna</div>
-
-                  <div id="user" style="width: 30%; height:50%; float: left; text-align: center">Użytkownik: 
-				  <?php
+      <header>
+        <div style="width: 60%; height:100%; float:left; font-size: 40px; text-align: center">Strona główna</div>
+        <div id="user" style="width: 30%; height:50%; float: left; text-align: center">Użytkownik: <?php
 				  include_once "loginForm/DBConnection.php";
 				  include_once ('loginForm/login.php');
           include_once "backend\przejazdDTO.php";
@@ -29,81 +26,75 @@
 					{
 						getLogin();
 					}
-				  ?>
-				  
-				  </div>
-<div id="uprawnienia" style="width: 10%; height:100%; float: right; text-align: center"><img src="https://www.wykop.pl/cdn/c3201142/comment_159770217020SffhYpG1fscWoH5V1chw.jpg" style="border: 0" width="100%" height="100%" alt=""></div> 
-    
-                   <div id="uprawnienia" style="width: 30%; height:50%; float: left; text-align: center">
-                   Uprawienia:
-                   <?php
+				  ?> </div>
+        <div id="uprawnienia" style="width: 10%; height:100%; float: right; text-align: center">
+          <img src="https://www.wykop.pl/cdn/c3201142/comment_159770217020SffhYpG1fscWoH5V1chw.jpg" style="border: 0" width="100%" height="100%" alt="">
+        </div>
+        <div id="uprawnienia" style="width: 30%; height:50%; float: left; text-align: center"> Uprawienia: <?php
 
 if (isset($_SESSION['role']))
 {
     getRole();
 }
-?>
-                   </div>  
-                    
-	        </header>
-         <div id="menu">
-              <table border="0" class="menu">
-                <tbody>
-                  <tr style="height: 50px">
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Menu</td>
-                  </tr>
-                  <tr>
-                    <td>Przejdź do sekcji:</td>
-                  </tr>
-                  <tr>
-                    <td>
-                    <a href="index.php">  
-                    <input type="submit" value="Strona główna" style="width: 100%; height: 64px; background-color: lightblue">  
-                    </a>
-                    </td>
-                  </tr>
-				  <?php 
+?> </div>
+      </header>
+      <div id="menu">
+        <table border="0" class="menu">
+          <tbody>
+            <tr style="height: 50px">
+              <td></td>
+            </tr>
+            <tr>
+              <td>Menu</td>
+            </tr>
+            <tr>
+              <td>Przejdź do sekcji:</td>
+            </tr>
+            <tr>
+              <td>
+                <a href="index.php">
+                  <input type="submit" value="Strona główna" style="width: 100%; height: 64px; background-color: lightblue">
+                </a>
+              </td>
+            </tr> <?php 
 				  if(isset($_SESSION['login']))
 				  {
 					  print('
-                  <tr>
-                    <td>
-                    <a href="index.php?s=raporty">  
-                    <input type="submit" value="Raporty" style="width: 100%; height: 64px; background-color: lightblue">  
-                    </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                    <a href="index.php?s=przejazdy">  
-                    <input type="submit" value="Przejazdy" style="width: 100%; height: 64px; background-color: lightblue">  
-                    </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                    <a href="index.php?s=systemUsers">  
-                    <input type="submit" value="Użytkownicy Systemu" style="width: 100%; height: 64px; background-color: lightblue">  
-                    </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                    <a href="index.php?s=warsztat">  
-                    <input type="submit" value="Warsztat" style="width: 100%; height: 64px; background-color: lightblue">  
-                    </a>
-                    </td>
-                  </tr> '); 	
+                  
+												<tr>
+													<td>
+														<a href="index.php?s=raporty">
+															<input type="submit" value="Raporty" style="width: 100%; height: 64px; background-color: lightblue">
+															</a>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<a href="index.php?s=przejazdy">
+																<input type="submit" value="Przejazdy" style="width: 100%; height: 64px; background-color: lightblue">
+																</a>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<a href="index.php?s=systemUsers">
+																	<input type="submit" value="Użytkownicy Systemu" style="width: 100%; height: 64px; background-color: lightblue">
+																	</a>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<a href="index.php?s=warsztat">
+																		<input type="submit" value="Warsztat" style="width: 100%; height: 64px; background-color: lightblue">
+																		</a>
+																	</td>
+																</tr> '); 	
 				  }
 				  ?>
-                </tbody>
-              </table>
-         </div>
-         <div id="main">
-              <?php
+          </tbody>
+        </table>
+      </div>
+      <div id="main"> <?php
 
 if (isset($_GET['s']))
 {
@@ -178,7 +169,8 @@ else
 			$rezerwacjaDAO = new rezerwacjaDAO();
 			$rezerwacjaDAO->dodajRezerwacje($rezerwacjaDTO);
 			
-			print("<h2> Dziękujemy za zarezerwowanie przejazdu na dzień $przejazdDTO->data na godzinę $przejazdDTO->godzinaRozpoczecia! Pamiętaj aby zjawić się 15 minut przed rozpoczęciem biegu</h2>");
+			print("
+														<h2> Dziękujemy za zarezerwowanie przejazdu na dzień $przejazdDTO->data na godzinę $przejazdDTO->godzinaRozpoczecia! Pamiętaj aby zjawić się 15 minut przed rozpoczęciem biegu</h2>");
 
         }
         else
@@ -219,18 +211,23 @@ else
        	if (!isset($_SESSION['role']))
             {
                 print ('
-                <form action="" method="post">
-                  <table border="0">
-                    <tbody>
-                      <tr>
-                        <td><input name="log" type="submit" value="Zaloguj"></td>
-                      </tr>
-                      <tr>
-                        <td><input name="new" type="submit" value="Zarejestruj"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </form>
+                
+														<form action="" method="post">
+															<table border="0">
+																<tbody>
+																	<tr>
+																		<td>
+																			<input name="log" type="submit" value="Zaloguj">
+																			</td>
+																		</tr>
+																		<tr>
+																			<td>
+																				<input name="new" type="submit" value="Zarejestruj">
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</form>
                 ');
                 if (isset($_POST['log']))
                 {
@@ -243,7 +240,88 @@ else
             }
             else
             {
+                if(isset($_GET['podglad']))
+                {
+                 include_once 'backend\SekcjaDTO.php';
+                 include_once 'backend\SekcjaDAO.php';
+                 include_once 'backend\RaportDTO.php';
+                 include_once 'backend\RaportDAO.php';
+                 $sekcjaDAO = new sekcjaDAO();
+                 $raporty = $sekcjaDAO->pobierzSekcjeDlaRaportu($_GET['rid']);
+                 $osobaDAO = new osobaDAO();
+                 $osoba = $osobaDAO->pobierzOsobePoPseudonimie($_SESSION['login']);
+                 $osobaID = $osoba->id;
+                 $osobaUprawnienia = $osoba->uprawnienia;
+                 if($osobaUprawnienia == "KIEROWNIK")
+                 {
+                  if(count($raporty) > 0)
+                  {
+                   $rDAO = new raportDAO();
+                   $r = $rDAO->pobierzRaportyZID($_GET['rid']);
+                   print("
+																<table border='1'>
+																	<tbody>
+																		<tr>
+																			<td colspan='3' style='text-align: center'>$r->dataUtworzenia</td>
+																		</tr>
+																		<tr>
+																			<td>Autor</td>
+																			<td>Tytuł</td>
+																			<td>Treść</td>
+																		</tr>");
+                  foreach($raporty as $raport)
+                  {
+                  $autor = $osobaDAO->pobierzOsobePoID($raport->idOsoby);                
+                   print(" 
+																		<tr>
+																			<td>$autor->imie $autor->nazwisko</td>
+																			<td>$raport->tytul</td>
+																			<td>$raport->tresc</td>
+																		</tr>");
+                  }
+                   print("
+																	</tbody>
+																</table");
+                  }
+                 } else
+                 { if(count($raporty) > 0)
+                  {
+                   $rDAO = new raportDAO();
+                   $r = $rDAO->pobierzRaportyZID($_GET['rid']);
+                   print("
+																<table border='1'>
+																	<tbody>
+																		<tr>
+																			<td colspan='3' style='text-align: center'>$r->dataUtworzenia</td>
+																		</tr>
+																		<tr>
+																			<td>Autor</td>
+																			<td>Tytuł</td>
+																			<td>Treść</td>
+																		</tr>");
+                  foreach($raporty as $raport)
+                  {
+                  
+                  if($raport->idOsoby == $osobaID)
+                  {
+                   $autor = $osobaDAO->pobierzOsobePoID($raport->idOsoby);                
+                   print(" 
+																		<tr>
+																			<td>$autor->imie $autor->nazwisko</td>
+																			<td>$raport->tytul</td>
+																			<td>$raport->tresc</td>
+																		</tr>");
+                  }
+                  }
+                   print("
+																	</tbody>
+																</table");
+                  }
+                 }
+                } else
+                {      
                 print (logoutForm());
+                }
             }
        }
 			
@@ -257,10 +335,8 @@ if(isset($_GET['uczestnik1']))
 {
  echo 'tu zrobić zapisywanie do bazy';
 }
-?>
-              </form>
-         </div> 
+?> </form>
+      </div>
     </div>
   </body>
 </html>
-
