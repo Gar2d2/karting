@@ -34,6 +34,13 @@
             $result = mysqli_query($connection->GetBazaConnection(), $query);
             return $result;
         }
+        public function modyfikujSkecje($sekcjaDTO)//tutaj DTO przejazd
+        {
+            $connection = new DBConnector();
+            $query="UPDATE `sekcja` SET `tytul` = '$sekcjaDTO->tytul', `tresc` = '$sekcjaDTO->tresc' WHERE `sekcja`.`id` = $sekcjaDTO->id";
+            $result = mysqli_query($connection->GetBazaConnection(), $query);
+            return $result;
+        }
     }
 ?>
 
