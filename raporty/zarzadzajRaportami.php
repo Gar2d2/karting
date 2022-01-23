@@ -32,7 +32,7 @@ foreach($raporty as $raport)
  }
 }
 print('  <form action="" method="get">
-           <input name="addRaport" type="submit" value="Dodaj nowy raport" />
+           <input id="addRaport" name="addRaport" type="submit" value="Dodaj nowy raport" />
          </form></tbody>
          </table>
        ');
