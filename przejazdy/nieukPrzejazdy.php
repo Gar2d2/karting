@@ -32,7 +32,7 @@ $now = strtotime("now");
 $day = date('Y-m-d', $now);
 $time = date('H:i', $now);
 $przejazdy = $przejazdDAO->pobierzPrzejazdyZData($day);
-$przejazd;
+$przejazd = null;
 for($i=0;$i<count($przejazdy);$i++)
 {
   if(empty($przejazdy[$i]->godzinaZakonczenia))
@@ -42,7 +42,11 @@ for($i=0;$i<count($przejazdy);$i++)
   }
 }
 print("Aktualny przejazd - Godzina: ");
-print($przejazd->godzinaRozpoczecia);
+if($przejazd)
+{
+  print($przejazd->godzinaRozpoczecia);
+
+}
 if(!is_null($przejazd))
 {
 print('<div id="przypis" style="width: 50%; height: 100%; float: left">
