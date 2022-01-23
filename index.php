@@ -330,6 +330,26 @@ else
                  $sekcjaDTO->tytul = $_GET['tytul'];
                  $sekcjaDTO->tresc = $_GET['tresc'];
                  $sekcjaDAO->modyfikujSkecje($sekcjaDTO);
+                } 
+                 if(isset($_GET['addRaport']))
+                {
+                 include_once("raporty\AddRaport.php");   
+                }
+                if(isset($_GET['ar']))
+                {
+                 $sekcjaDAO = new sekcjaDAO();
+                 $sekcjaDTO = new sekcjaDTO();            
+                 $sekcjaDTO->tytul = $_GET['tytul'];
+                 $sekcjaDTO->tresc = $_GET['tresc'];
+                 $osobaDAO = new osobaDAO();
+                 $osoba = $osobaDAO->pobierzOsobePoPseudonimie($_SESSION['login']);
+                 $osobaID = $osoba->id;
+                 $sekcjaDTO->idOsoby = $osobaID;
+                 $raportDAO = new raportDAO();
+                 $today = date('Y-m-d', strtotime("now"));
+                 $raportID = $raportDAO->pobierzRaportyZData($today)[0]->id;
+                 $sekcjaDTO->idRaportu = $raportID;
+                 $sekcjaDAO->dodajSekcje($sekcjaDTO);
                 }
                 else
                 {      

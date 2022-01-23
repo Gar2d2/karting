@@ -34,6 +34,8 @@
             $result = mysqli_query($connection->GetBazaConnection(), $query);
             return $result;
         }
+
+
         public function modyfikujSkecje($sekcjaDTO)//tutaj DTO przejazd
         {
             $connection = new DBConnector();

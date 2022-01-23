@@ -31,8 +31,9 @@ foreach($raporty as $raport)
          </tr></form>");
  }
 }
-
-print('  </tbody>
+print('  <form action="" method="get">
+           <input name="addRaport" type="submit" value="Dodaj nowy raport" />
+         </form></tbody>
          </table>
        ');
 
