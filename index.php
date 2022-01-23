@@ -137,6 +137,9 @@ if (isset($_GET['s']))
 		case "zakonczonePrzejazdy":
 			include_once "przejazdy/zakonczonePrzejazdy.php";
 		break;
+		case "zarzadzajRaportami":
+			include_once "raporty/zarzadzajRaportami.php";
+		break;
 		case "su":
 			include_once "systemUsers/su.php";
 		break;
