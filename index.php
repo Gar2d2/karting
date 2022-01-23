@@ -398,6 +398,8 @@ else
                  include_once "backend\NaprawyDTO.php";
                  $naprawyDAO = new naprawyDAO();
                  $naprawyDAO->aktualizacjaNaprawy($_GET['rid'], $_GET['status']);
+			$_GET['naprawy'] = "t";
+			header( "Location: index.php?s=naprawy" );
                 }
                 if(isset($_GET['newRepair']))
                 {
@@ -414,6 +416,8 @@ else
                  $osoba = $osobaDAO->pobierzOsobePoPseudonimie($_SESSION['login']);
                  $osobaID = $osoba->id;
                  $naprawyDAO->dodajNowa($today, $_GET['idKart'], $osobaID, $_GET['usterka']);
+			$_GET['naprawy'] = "t";
+			header( "Location: index.php?s=naprawy" );
                 }
                 else
                 {      
