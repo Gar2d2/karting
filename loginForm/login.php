@@ -66,6 +66,13 @@
       $url = 'index.php';
       header( "Location: $url" );
      }
+	 
+	 function lg()
+     {
+      unset($_SESSION['role']);
+	  unset($_SESSION['login']);
+     }
+	 
 	include_once "autoryzacja.php";
      if(isset($_POST["loguj"]))
      {
@@ -79,7 +86,10 @@
        }
 	   if($_SESSION['role']==-1)
 	   {
-		   logout();
+		   echo '<script language="javascript">';
+		   echo 'alert("błędne dane logowania spróbuj ponownie")';
+			echo '</script>';
+			lg();
 	   }
      }
 
